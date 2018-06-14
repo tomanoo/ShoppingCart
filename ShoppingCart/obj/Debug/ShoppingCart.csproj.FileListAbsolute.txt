@@ -1,0 +1,24 @@
+c:\users\tomek\documents\visual studio 2017\Projects\ShoppingCart\ShoppingCart\bin\Debug\ShoppingCart.exe.config
+c:\users\tomek\documents\visual studio 2017\Projects\ShoppingCart\ShoppingCart\bin\Debug\ShoppingCart.exe
+c:\users\tomek\documents\visual studio 2017\Projects\ShoppingCart\ShoppingCart\bin\Debug\ShoppingCart.pdb
+c:\users\tomek\documents\visual studio 2017\Projects\ShoppingCart\ShoppingCart\obj\Debug\ShoppingCart.csprojResolveAssemblyReference.cache
+c:\users\tomek\documents\visual studio 2017\Projects\ShoppingCart\ShoppingCart\obj\Debug\ShoppingCart.Properties.Resources.resources
+c:\users\tomek\documents\visual studio 2017\Projects\ShoppingCart\ShoppingCart\obj\Debug\ShoppingCart.View.resources
+c:\users\tomek\documents\visual studio 2017\Projects\ShoppingCart\ShoppingCart\obj\Debug\ShoppingCart.csproj.GenerateResource.Cache
+c:\users\tomek\documents\visual studio 2017\Projects\ShoppingCart\ShoppingCart\obj\Debug\ShoppingCart.exe
+c:\users\tomek\documents\visual studio 2017\Projects\ShoppingCart\ShoppingCart\obj\Debug\ShoppingCart.pdb
+c:\users\tomek\documents\visual studio 2017\Projects\ShoppingCart\ShoppingCart\obj\Debug\ShoppingCart.Views.AddProductView.AddProducts.resources
+c:\users\tomek\documents\visual studio 2017\Projects\ShoppingCart\ShoppingCart\bin\Debug\Newtonsoft.Json.dll
+c:\users\tomek\documents\visual studio 2017\Projects\ShoppingCart\ShoppingCart\bin\Debug\Newtonsoft.Json.xml
+\\Pitagoras\Profile2_Studenci\tomasz.weclawski\Downloads\ShoppingCart-master\ShoppingCart\bin\Debug\ShoppingCart.exe.config
+\\Pitagoras\Profile2_Studenci\tomasz.weclawski\Downloads\ShoppingCart-master\ShoppingCart\obj\Debug\ShoppingCart.exe
+\\Pitagoras\Profile2_Studenci\tomasz.weclawski\Downloads\ShoppingCart-master\ShoppingCart\obj\Debug\ShoppingCart.pdb
+\\Pitagoras\Profile2_Studenci\tomasz.weclawski\Downloads\ShoppingCart-master\ShoppingCart\bin\Debug\ShoppingCart.exe
+\\Pitagoras\Profile2_Studenci\tomasz.weclawski\Downloads\ShoppingCart-master\ShoppingCart\bin\Debug\ShoppingCart.pdb
+\\Pitagoras\Profile2_Studenci\tomasz.weclawski\Downloads\ShoppingCart-master\ShoppingCart\bin\Debug\Newtonsoft.Json.dll
+\\Pitagoras\Profile2_Studenci\tomasz.weclawski\Downloads\ShoppingCart-master\ShoppingCart\bin\Debug\Newtonsoft.Json.xml
+\\Pitagoras\Profile2_Studenci\tomasz.weclawski\Downloads\ShoppingCart-master\ShoppingCart\obj\Debug\ShoppingCart.csprojResolveAssemblyReference.cache
+\\Pitagoras\Profile2_Studenci\tomasz.weclawski\Downloads\ShoppingCart-master\ShoppingCart\obj\Debug\ShoppingCart.Properties.Resources.resources
+\\Pitagoras\Profile2_Studenci\tomasz.weclawski\Downloads\ShoppingCart-master\ShoppingCart\obj\Debug\ShoppingCart.Views.AddProductView.AddProducts.resources
+\\Pitagoras\Profile2_Studenci\tomasz.weclawski\Downloads\ShoppingCart-master\ShoppingCart\obj\Debug\ShoppingCart.View.resources
+\\Pitagoras\Profile2_Studenci\tomasz.weclawski\Downloads\ShoppingCart-master\ShoppingCart\obj\Debug\ShoppingCart.csproj.GenerateResource.Cache
