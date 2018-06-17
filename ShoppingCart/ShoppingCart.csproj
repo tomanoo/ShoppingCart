@@ -50,7 +50,9 @@
   <ItemGroup>
     <Compile Include="Models\Model.cs" />
     <Compile Include="Presenters\Presenter.cs" />
+    <Compile Include="Products\Cart.cs" />
     <Compile Include="Products\Product.cs" />
+    <Compile Include="Products\Productos.cs" />
     <Compile Include="Views\AddProductView\AddProducts.cs">
       <SubType>Form</SubType>
     </Compile>
