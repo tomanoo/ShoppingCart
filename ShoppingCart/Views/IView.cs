@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ShoppingCart
 {
     public interface IView
     {
-        event Action<object, EventArgs> AddProduct;
+        List<string> NamesOfProductsInCartList { set; }
         event Action<object, EventArgs> ClearCart;
-        event Action<object, EventArgs> DeleteProduct;
     }
 }

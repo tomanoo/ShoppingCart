@@ -16,8 +16,8 @@ namespace ShoppingCart
     public partial class View : Form, IView
     {
         
-        public List<Product> cart = new List<Product>();
-        public List<Product> products = new List<Product>();
+       // public List<Product> cart = new List<Product>();
+       // public List<Product> products = new List<Product>();
         public List<string> NamesOfProductsInProductList
         {
             set
@@ -42,14 +42,14 @@ namespace ShoppingCart
                 }
             }
         }
-        public event Action<object, EventArgs> AddProduct;
         public event Action<Product> AddProductToProducts;
         public event Func<double, double> UpdateCost;
         public event Action<object, EventArgs> ClearCart;
-        public event Action<object, EventArgs> DeleteProduct;
         public event Action<Product> AddProductToProductos;
         public event Action<int> DeleteProductFromCart;
         public event Action<int> AddProductToCart;
+        public event Func<int, int> ReturnQuantity;
+        public event Func<int, double> ReturnPrice;
         public View()
         {
             InitializeComponent();
@@ -62,12 +62,12 @@ namespace ShoppingCart
             //{
             //    ProductList.Items.Add(p.Name);
             //}
-            loadProducts();
+      //      loadProducts();
         }
 
         public void loadProducts()
         {
-            using (StreamReader r = new StreamReader("./Products.json"))
+         /*   using (StreamReader r = new StreamReader("./Products.json"))
             {
                 string json = r.ReadToEnd();
                 products = JsonConvert.DeserializeObject<List<Product>>(json);
@@ -76,23 +76,25 @@ namespace ShoppingCart
             foreach (Product p in products)
             {
                 ProductList.Items.Add(p.Name);
-            }
+            }*/
         }
 
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            if (products[ProductList.SelectedIndex].Quantity > 0)
+            if (Int32.Parse(lblQuantity.Text) > 0)
             {
                 //AddProduct(sender, e);
-                //UpdateCost(products[ProductList.SelectedIndex].Price);
-                
-                cart.Add(products[ProductList.SelectedIndex]);
-                --products[ProductList.SelectedIndex].Quantity;
-                lblQuantity.Text = products[ProductList.SelectedIndex].Quantity.ToString();
-                CartList.Items.Add(ProductList.SelectedItem.ToString());
+                // UpdateCost(ReturnPrice(ProductList.SelectedIndex));
+
+                //cart.Add(products[ProductList.SelectedIndex]);
+                //--products[ProductList.SelectedIndex].Quantity;
+                // lblQuantity.Text = products[ProductList.SelectedIndex].Quantity.ToString();
+                //  CartList.Items.Add(ProductList.SelectedItem.ToString());
+                // NamesOfProductsInCartList.Add(ProductList.SelectedItem.ToString());
                 //cost += products[ProductList.SelectedIndex].Price;
-                lblCost.Text = UpdateCost(products[ProductList.SelectedIndex].Price).ToString();
+                lblQuantity.Text = (ReturnQuantity(ProductList.SelectedIndex) - 1).ToString();
+                lblCost.Text = UpdateCost(ReturnPrice(ProductList.SelectedIndex)).ToString();
                 AddProductToCart(ProductList.SelectedIndex);
             }
             else
@@ -108,15 +110,16 @@ namespace ShoppingCart
             {
                 //DeleteProduct(sender, e);
                 //cost -= cart[CartList.SelectedIndex].Price;
-                ++products[ProductList.SelectedIndex].Quantity;
-                lblQuantity.Text = products[ProductList.SelectedIndex].Quantity.ToString();
-                cart.RemoveAt(CartList.SelectedIndex);
+                //++products[ProductList.SelectedIndex].Quantity;
+                //lblQuantity.Text = products[ProductList.SelectedIndex].Quantity.ToString();
+                // cart.RemoveAt(CartList.SelectedIndex);
+                lblCost.Text = UpdateCost(ReturnPrice(CartList.SelectedIndex)*(-1)).ToString();
                 CartList.Items.RemoveAt(CartList.SelectedIndex);
-                lblCost.Text = UpdateCost(products[ProductList.SelectedIndex].Price*(-1)).ToString();
                 DeleteProductFromCart(CartList.SelectedIndex);
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.ToString());
             }
 
         }
@@ -128,7 +131,7 @@ namespace ShoppingCart
             {
                 ClearCart(sender, e);
                 lblCost.Text = "";
-                cart.Clear();
+               // cart.Clear();
                 CartList.Items.Clear();
 
             }
@@ -155,15 +158,18 @@ namespace ShoppingCart
         {
             ProductList.Items.Add(obj.Name);
             AddProductToProducts(obj);
-            this.loadProducts();
+         //   AddProductToProductos(obj);
+           // this.loadProducts();
         }
 
         private void ProductList_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                lblPrice.Text = products[ProductList.SelectedIndex].Price.ToString();
-                lblQuantity.Text = products[ProductList.SelectedIndex].Quantity.ToString();
+                //lblPrice.Text = products[ProductList.SelectedIndex].Price.ToString();
+                lblPrice.Text = ReturnPrice(ProductList.SelectedIndex).ToString();
+                lblQuantity.Text =  ReturnQuantity(ProductList.SelectedIndex).ToString();
+               //lblQuantity.Text = products[ProductList.SelectedIndex].Quantity.ToString();
             }
             catch (Exception ex)
             {

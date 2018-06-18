@@ -30,8 +30,8 @@ namespace ShoppingCart.Views.AddProductView
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            try
-            {
+         //   try
+          //  {
                 Product product = new Product(NameBox.Text, Double.Parse(PriceBox.Text), Int32.Parse(QuantityBox.Text));
                 var json = JsonConvert.SerializeObject(product, Formatting.Indented);
                 var jsonData = File.ReadAllText("./Products.json");
@@ -42,11 +42,11 @@ namespace ShoppingCart.Views.AddProductView
                 AddNewProduct(product);
                 //model.Products.Add(product);
                 this.Close();
-            }
-            catch (Exception ex)
-            {
+            //}
+        //    catch (Exception ex)
+         //   {
 
-            }
+          //  }
             
         }
     }
