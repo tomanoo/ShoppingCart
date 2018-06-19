@@ -50,6 +50,7 @@ namespace ShoppingCart
         public event Action<int> AddProductToCart;
         public event Func<int, int> ReturnQuantity;
         public event Func<int, double> ReturnPrice;
+        public event Func<int, double> ReturnCartProductPrice;
         public View()
         {
             InitializeComponent();
@@ -113,13 +114,18 @@ namespace ShoppingCart
                 //++products[ProductList.SelectedIndex].Quantity;
                 //lblQuantity.Text = products[ProductList.SelectedIndex].Quantity.ToString();
                 // cart.RemoveAt(CartList.SelectedIndex);
-                lblCost.Text = UpdateCost(ReturnPrice(CartList.SelectedIndex)*(-1)).ToString();
-                CartList.Items.RemoveAt(CartList.SelectedIndex);
+                lblCost.Text = UpdateCost(ReturnCartProductPrice(CartList.SelectedIndex)*(-1)).ToString();
+                for(int i = 0; i < ProductList.Items.Count; i++)
+                {
+                    if (CartList.Items[CartList.SelectedIndex].Equals(ProductList.Items[i]))
+                        lblQuantity.Text = (ReturnQuantity(i) + 1).ToString();
+                }
                 DeleteProductFromCart(CartList.SelectedIndex);
+                CartList.Items.RemoveAt(CartList.SelectedIndex);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+             //   MessageBox.Show(ex.ToString());
             }
 
         }

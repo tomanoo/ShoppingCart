@@ -11,6 +11,8 @@ namespace ShoppingCart
         private List<Product> cart = new List<Product>();
         private List<string> cartProductNames = new List<string>();
 
+        public double Cost { get; set; }
+
         public Cart() { }
 
         public List<Product> ReturnCart()
@@ -40,11 +42,13 @@ namespace ShoppingCart
 
         public List<string> ReturnNameOfProductsInCart()
         {
+            cartProductNames.Clear();
             foreach (Product p in cart)
             {
                 cartProductNames.Add(p.Name);
             }
             return cartProductNames;
         }
+        
     }
 }

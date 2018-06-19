@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ShoppingCart.Views;
-using ShoppingCart.Models;
 using Newtonsoft.Json;
 using System.IO;
 
@@ -19,7 +18,6 @@ namespace ShoppingCart.Views.AddProductView
         public event Action<Product> AddNewProduct;
 
         
-        Model model = new Model();
         View view = new View();
         public AddProducts(View view)
         {

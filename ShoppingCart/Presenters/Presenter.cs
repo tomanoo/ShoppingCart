@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ShoppingCart.Models;
 using ShoppingCart.Views.AddProductView;
 using System.Windows.Forms;
 
@@ -15,14 +14,12 @@ namespace ShoppingCart
     class Presenter
     {
         private View view;
-        private Model model;
         private Productos products;// = new Productos();
         private Cart cart;// = new Cart();
         
-        public Presenter(View view, Model model, Productos products, Cart cart)//, AddProducts addProducts)
+        public Presenter(View view, Productos products, Cart cart)//, AddProducts addProducts)
         {
             this.view = view;
-            this.model = model;
             this.products = products;
             this.cart = cart;
             //this.addProducts = addProducts;
@@ -35,8 +32,14 @@ namespace ShoppingCart
             view.DeleteProductFromCart += View_DeleteProductFromCart;
             view.AddProductToCart += View_AddProductToCart;
             view.ReturnPrice += View_ReturnPrice;
+            view.ReturnCartProductPrice += View_ReturnCartProductPrice;
             view.ReturnQuantity += View_ReturnQuantity;
             LoadProductList();
+        }
+
+        private double View_ReturnCartProductPrice(int arg)
+        {
+            return cart.ReturnProductFromCart(arg).Price;
         }
 
         private int View_ReturnQuantity(int arg)
@@ -53,7 +56,8 @@ namespace ShoppingCart
         {
             // cart.AddProductToCart(products.ReturnProduct(obj));
             cart.AddProductToCart(products.ReturnProductos()[obj]);
-            MessageBox.Show(products.ReturnProductos().Capacity.ToString());
+            --products.ReturnProduct(obj).Quantity;
+            //MessageBox.Show(cart.ReturnNameOfProductsInCart().Count.ToString());
             LoadCartList();
         }
 
@@ -68,13 +72,21 @@ namespace ShoppingCart
 
         private void View_DeleteProductFromCart(int obj)
         {
+            for (int i=0; i<products.ReturnProductos().Count; i++)
+            {
+                if (products.ReturnProduct(i).Name == cart.ReturnProductFromCart(obj).Name)
+                {
+                    ++products.ReturnProduct(i).Quantity;
+                    break;
+                }
+            }
             cart.DeleteProductFromCart(obj);
             LoadCartList();
         }
 
         private double View_UpdateCost(double arg)
         {
-            return model.Cost += arg;
+            return cart.Cost += arg;
         }
 
         private void View_AddProductToProducts(Product obj)
