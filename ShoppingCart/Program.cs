@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ShoppingCart.Views.AddProductView;
 
@@ -21,7 +18,7 @@ namespace ShoppingCart
             Productos products = new Productos();
             Cart cart = new Cart();
             AddProducts addProducts = new AddProducts(view);
-            Presenter presenter = new Presenter(view, products, cart);//Presenter(view, model);//Presenter(view, model, addProducts);
+            Presenter presenter = new Presenter(view, products, cart);
             Application.Run(view);
         }
     }

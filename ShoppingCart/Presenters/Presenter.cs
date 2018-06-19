@@ -1,32 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ShoppingCart.Views.AddProductView;
-using System.Windows.Forms;
 
 namespace ShoppingCart
 {
     class Presenter
     {
         private View view;
-        private Productos products;// = new Productos();
-        private Cart cart;// = new Cart();
+        private Productos products;
+        private Cart cart;
         
-        public Presenter(View view, Productos products, Cart cart)//, AddProducts addProducts)
+        public Presenter(View view, Productos products, Cart cart)
         {
             this.view = view;
             this.products = products;
             this.cart = cart;
-            //this.addProducts = addProducts;
-            // z 2/3 klasy, bazowa i abstrakcyjna, potem 2 ktore dziedziczaca, stworzyc kolekcje, powrzucamy tam elementy klasy pochodnej i potraktujemy metoda z klasy abstrakcyjnej
             view.ClearCart += View_ClearCart;
-            //view.loadProducts();
-            //addProducts.AddNewProduct += AddProducts_AddNewProduct;
             view.AddProductToProducts += View_AddProductToProducts;
             view.UpdateCost += View_UpdateCost;
             view.DeleteProductFromCart += View_DeleteProductFromCart;
@@ -54,10 +41,8 @@ namespace ShoppingCart
 
         private void View_AddProductToCart(int obj)
         {
-            // cart.AddProductToCart(products.ReturnProduct(obj));
             cart.AddProductToCart(products.ReturnProductos()[obj]);
             --products.ReturnProduct(obj).Quantity;
-            //MessageBox.Show(cart.ReturnNameOfProductsInCart().Count.ToString());
             LoadCartList();
         }
 
@@ -96,6 +81,17 @@ namespace ShoppingCart
 
         private void View_ClearCart(object arg1, EventArgs arg2)
         {
+            for (int i=0; i<products.ReturnProductos().Count; i++)
+            {
+                for (int j=0; j<cart.ReturnCart().Count; j++)
+                {
+                    if (cart.ReturnProductFromCart(j).Name == products.ReturnProduct(i).Name)
+                    {
+                        ++products.ReturnProduct(i).Quantity;
+                    }
+                }
+            }
+            cart.Cost = 0;
             cart.ClearCart();
         }
     }

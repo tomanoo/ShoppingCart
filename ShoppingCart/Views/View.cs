@@ -1,23 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ShoppingCart.Views.AddProductView;
-using Newtonsoft.Json;
-using System.IO;
 
 namespace ShoppingCart
 {
     public partial class View : Form, IView
     {
-        
-       // public List<Product> cart = new List<Product>();
-       // public List<Product> products = new List<Product>();
         public List<string> NamesOfProductsInProductList
         {
             set
@@ -45,7 +34,6 @@ namespace ShoppingCart
         public event Action<Product> AddProductToProducts;
         public event Func<double, double> UpdateCost;
         public event Action<object, EventArgs> ClearCart;
-        public event Action<Product> AddProductToProductos;
         public event Action<int> DeleteProductFromCart;
         public event Action<int> AddProductToCart;
         public event Func<int, int> ReturnQuantity;
@@ -54,46 +42,16 @@ namespace ShoppingCart
         public View()
         {
             InitializeComponent();
-            //using (StreamReader r = new StreamReader("./Products.json"))
-            //{
-            //    string json = r.ReadToEnd();
-            //    products = JsonConvert.DeserializeObject<List<Product>>(json);
-            //}
-            //foreach (Product p in products)
-            //{
-            //    ProductList.Items.Add(p.Name);
-            //}
-      //      loadProducts();
         }
 
         public void loadProducts()
         {
-         /*   using (StreamReader r = new StreamReader("./Products.json"))
-            {
-                string json = r.ReadToEnd();
-                products = JsonConvert.DeserializeObject<List<Product>>(json);
-            }
-            ProductList.Items.Clear();
-            foreach (Product p in products)
-            {
-                ProductList.Items.Add(p.Name);
-            }*/
         }
-
 
         private void AddButton_Click(object sender, EventArgs e)
         {
             if (Int32.Parse(lblQuantity.Text) > 0)
             {
-                //AddProduct(sender, e);
-                // UpdateCost(ReturnPrice(ProductList.SelectedIndex));
-
-                //cart.Add(products[ProductList.SelectedIndex]);
-                //--products[ProductList.SelectedIndex].Quantity;
-                // lblQuantity.Text = products[ProductList.SelectedIndex].Quantity.ToString();
-                //  CartList.Items.Add(ProductList.SelectedItem.ToString());
-                // NamesOfProductsInCartList.Add(ProductList.SelectedItem.ToString());
-                //cost += products[ProductList.SelectedIndex].Price;
                 lblQuantity.Text = (ReturnQuantity(ProductList.SelectedIndex) - 1).ToString();
                 lblCost.Text = UpdateCost(ReturnPrice(ProductList.SelectedIndex)).ToString();
                 AddProductToCart(ProductList.SelectedIndex);
@@ -104,32 +62,29 @@ namespace ShoppingCart
             }
         }
         
-
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             try
             {
-                //DeleteProduct(sender, e);
-                //cost -= cart[CartList.SelectedIndex].Price;
-                //++products[ProductList.SelectedIndex].Quantity;
-                //lblQuantity.Text = products[ProductList.SelectedIndex].Quantity.ToString();
-                // cart.RemoveAt(CartList.SelectedIndex);
                 lblCost.Text = UpdateCost(ReturnCartProductPrice(CartList.SelectedIndex)*(-1)).ToString();
+                if (lblCost.Text == "0")
+                    lblCost.Text = "";
                 for(int i = 0; i < ProductList.Items.Count; i++)
                 {
                     if (CartList.Items[CartList.SelectedIndex].Equals(ProductList.Items[i]))
+                    {
                         lblQuantity.Text = (ReturnQuantity(i) + 1).ToString();
+                        break;
+                    }
                 }
                 DeleteProductFromCart(CartList.SelectedIndex);
                 CartList.Items.RemoveAt(CartList.SelectedIndex);
             }
             catch (Exception ex)
             {
-             //   MessageBox.Show(ex.ToString());
             }
 
         }
-        
 
         private void ClearButton_Click(object sender, EventArgs e)
         {
@@ -137,7 +92,7 @@ namespace ShoppingCart
             {
                 ClearCart(sender, e);
                 lblCost.Text = "";
-               // cart.Clear();
+                lblQuantity.Text = (ReturnQuantity(ProductList.SelectedIndex)).ToString();
                 CartList.Items.Clear();
 
             }
@@ -164,25 +119,18 @@ namespace ShoppingCart
         {
             ProductList.Items.Add(obj.Name);
             AddProductToProducts(obj);
-         //   AddProductToProductos(obj);
-           // this.loadProducts();
         }
 
         private void ProductList_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                //lblPrice.Text = products[ProductList.SelectedIndex].Price.ToString();
                 lblPrice.Text = ReturnPrice(ProductList.SelectedIndex).ToString();
                 lblQuantity.Text =  ReturnQuantity(ProductList.SelectedIndex).ToString();
-               //lblQuantity.Text = products[ProductList.SelectedIndex].Quantity.ToString();
             }
             catch (Exception ex)
             {
-
             }
         }
-        
-        
     }
 }
